@@ -190,23 +190,7 @@ document.addEventListener("DOMContentLoaded", function() {
       });
   };*/
 });
-
-//not convert green color
-
-document.addEventListener("DOMContentLoaded", function() {
-  let buttonsClicked = 0;
-
-  document.querySelectorAll(".seat-button").forEach(item => {
-      item.addEventListener('click', event => {
-          if(buttonsClicked < 4) {
-              item.classList.add('bg-green-500');
-              
-              
-              buttonsClicked++;
-          }
-      });
-  });
-});
+  
 
 
 //decreses seat number
@@ -351,3 +335,5 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   });
 });
+
+
