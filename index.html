@@ -100,7 +100,7 @@
                 <img src="images/cupon-devider.png">
             </div>
             <div>
-            <p class="font-bold pt-16 ">NEW<sub class="font-bold pt-16  text-sm pr-5">15</sub></p>
+            <p class="font-bold pt-16 ">NEW15</p>
             <p class="pr-5"> Coupon Code</p>
             </div>
             </div>
@@ -358,16 +358,17 @@
                 </div>
              <div class="divider"></div>
              <div class="flex gap-96">
-             <p class="font-bold">Total Price </p>
+             <p  class="font-bold">Total Price </p>
              <p id="totalPrice">BDT 0</p>
             </div>
             
             <label class="input input-bordered flex items-center mt-6 ">
-              <input id="couponInput" type="text" class="grow" placeholder="Have any coupon" />
-              <button id="submitButton"  class=" btn bg-lime-500 text-white rounded-xl ">Apply</button>
+              <input id="couponField" type="text" class="grow" placeholder="Have any coupon" />
+              <button id="applyButton" onclick="applyCoupon()"  class=" btn bg-lime-500 text-white rounded-xl " >Apply</button>
+              <p id="successMessage" style="display:none;">Coupon applied successfully!</p>
             </label>
             <div class="flex gap-96">
-              <p id="grandTotal"  class="font-bold pt-8">Grand Total </p>
+              <p  class="font-bold pt-8">Grand Total </p>
               <p id="grandTotal" class=" pt-8">BDT 0</p>
              </div> 
              </div>
@@ -377,7 +378,7 @@
                 <span class="label-text">Passenger Name*</span>
                 
               </div>
-              <input type="text" placeholder="Enter your name" class="input input-bordered w-full max-w-xs" />
+              <input id="inputField1" type="text" placeholder="Enter your name" class="input input-bordered w-full max-w-xs" />
              
             </label>
 
@@ -386,7 +387,7 @@
                 <span class="label-text">Phone Number*</span>
                 
               </div>
-              <input type="text" placeholder="Enter your phone number" class="input input-bordered w-full max-w-xs" />
+              <input id="inputField2" type="text" placeholder="Enter your phone number" class="input input-bordered w-full max-w-xs" />
              
             </label>
 
@@ -395,11 +396,11 @@
                 <span class="label-text">Email ID</span>
                 
               </div>
-              <input type="text" placeholder="Enter your email id" class="input input-bordered w-full max-w-xs" />
+              <input id="inputField3" type="text" placeholder="Enter your email id" class="input input-bordered w-full max-w-xs" />
              
             </label>
             
-            <button class="btn btn-wide bg-lime-500 text-white mt-5" onclick="my_modal_1.showModal()">Next</button>
+            <button id="next" class="btn btn-wide bg-lime-500 text-white mt-5 disabled:opacity-50"  onclick="my_modal_1.showModal()">Next</button>
             <dialog id="my_modal_1" class="modal">
               <div class="modal-box text-center">
                 <img class="relative left-44" src="images/success.png">

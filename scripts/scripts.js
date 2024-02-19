@@ -257,30 +257,42 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 //coupon
+function applyCoupon() {
+  var totalPrice = parseFloat(document.getElementById('totalPrice').innerText);
+  var grandTotal = parseFloat(document.getElementById('grandTotal').innerText);
+  var couponField = document.getElementById('couponField').value;
+  var successMessage = document.getElementById('successMessage');
+  var applyButton = document.getElementById('applyButton');
 
-document.getElementById('applyButton').addEventListener('click', function() {
-  var couponInput = document.getElementById('couponInput').value;
-  var total = 100; // Assuming the total price is $100
-  var discountAmount = 0;
+  // Check if the coupon field is not empty and if the coupon is valid
+  if (couponField === "NEW15" || couponField === "Coupon20") {
+      // Apply 15% discount for "NEW15" coupon
+      if (couponField === "NEW15") {
+          var discountAmount = totalPrice * 0.15;
+          grandTotal = totalPrice - discountAmount;
+      }
+      // Apply $20 discount for "Coupon20" coupon
+      else if (couponField === "Coupon20") {
+          grandTotal = totalPrice - 20;
+      }
 
-  if (couponInput === 'new15') {
-      discountAmount = total * 0.15;
-  } else if (couponInput === 'coupon20') {
-      discountAmount = total * 0.20;
+      // Update the grand total and display the success message
+      document.getElementById('grandTotal').innerText = grandTotal.toFixed(2);
+      successMessage.style.display = 'block';
+
+      // Hide the coupon field
+      document.getElementById('couponField').style.display = 'none';
+
+      // Hide the apply button
+      applyButton.style.display = 'none';
+  } else {
+      alert("Invalid coupon code. Please enter a valid coupon code.");
   }
+}
 
-  var grandTotal = total - discountAmount;
 
-  document.getElementById('discount').textContent = 'Discount Applied: $' + discountAmount.toFixed(2);
-  document.getElementById('grandTotal').textContent = 'Grand Total: $' + grandTotal.toFixed(2);
 
-  document.getElementById('discount').classList.remove('hidden');
-  document.getElementById('grandTotal').classList.remove('hidden');
 
-  document.getElementById('couponInput').classList.add('hidden');
-  document.getElementById('applyButton').classList.add('hidden');
-});
-  
 //apply button
 
 // Get references to the input field and the submit button
@@ -300,4 +312,42 @@ couponInput.addEventListener('input', function() {
         // Otherwise, keep the submit button disabled
         submitButton.disabled = true;
     }
+});
+
+//next button
+
+const inputField1 = document.getElementById('inputField1');
+const inputField2 = document.getElementById('inputField2');
+const inputField3 = document.getElementById('inputField3');
+const next = document.getElementById('next');
+
+inputField1.addEventListener('input', toggleButtonState);
+inputField2.addEventListener('input', toggleButtonState);
+inputField3.addEventListener('input', toggleButtonState);
+
+function toggleButtonState() {
+  if (inputField1.value.trim() !== '' || inputField2.value.trim() !== '' || inputField3.value.trim() !== '') {
+    next.removeAttribute('disabled');
+    next.classList.remove('disabled:opacity-50');
+  } else {
+    next.setAttribute('disabled', true);
+    next.classList.add('disabled:opacity-50');
+  }
+}
+
+//apply button
+
+document.addEventListener('DOMContentLoaded', function() {
+  const couponCodeInput = document.getElementById('couponField');
+  const applyButton = document.getElementById('applyButton');
+
+  couponCodeInput.addEventListener('input', function() {
+      const couponCode = couponCodeInput.value.trim();
+      
+      if (couponCode === 'NEW15' || couponCode === 'Coupon20') {
+          applyButton.disabled = true;
+      } else {
+          applyButton.disabled = false;
+      }
+  });
 });
