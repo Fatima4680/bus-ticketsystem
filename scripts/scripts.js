@@ -21,7 +21,13 @@ document.addEventListener("DOMContentLoaded", function() {
     seatButtons.forEach(function(seatButton) {
       seatButton.addEventListener('click', function() {
         // Toggle the 'bg-green-500' class to change the background color
-        seatButton.classList.toggle('bg-green-500');
+        if(buttonsClicked < 4) {
+          seatButton.classList.toggle('bg-green-500');
+          
+          
+          buttonsClicked++;
+      }
+       // seatButton.classList.toggle('bg-green-500');
         // Toggle the 'text-white' class to change the text color
         seatButton.classList.toggle('text-white');
       });
@@ -88,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //apply coupon
 
-document.addEventListener("DOMContentLoaded", function() {
+/*document.addEventListener("DOMContentLoaded", function() {
   const applyCouponButton = document.getElementById('applyCouponButton');
   const totalPriceDisplay = document.getElementById('totalPrice');
   const grandTotalDisplay = document.getElementById('grandTotal');
@@ -135,8 +141,163 @@ document.addEventListener("DOMContentLoaded", function() {
       
       alert('Coupon applied successfully!');
   }
+});*/
+
+//show number of seat
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  const buttons = document.querySelectorAll(".seat-button");
+  const counterButton = document.getElementById("counterButton");
+
+  let count = 0;
+  let selectedSeats = 0;
+
+  const updateCounterButton = () => {
+      counterButton.textContent = ` ${count}`;
+  };
+
+  const showCounterButton = () => {
+      if (count > 0) {
+          counterButton.classList.remove("hidden");
+      } else {
+          counterButton.classList.add("hidden");
+      }
+  };
+
+  buttons.forEach(button => {
+      button.addEventListener("click", function() {
+          if (selectedSeats < 4) {
+              count++;
+              selectedSeats++;
+              updateCounterButton();
+              showCounterButton();
+              if (selectedSeats === 4) {
+                  disableButtons();
+              }
+          }
+      });
+  });
+
+  counterButton.addEventListener("click", function() {
+      alert(`You clicked ${count} button(s).`);
+  });
+
+  /*const disableButtons = () => {
+      buttons.forEach(button => {
+          button.disabled = true;
+      });
+  };*/
+});
+
+//not convert green color
+
+document.addEventListener("DOMContentLoaded", function() {
+  let buttonsClicked = 0;
+
+  document.querySelectorAll(".seat-button").forEach(item => {
+      item.addEventListener('click', event => {
+          if(buttonsClicked < 4) {
+              item.classList.add('bg-green-500');
+              
+              
+              buttonsClicked++;
+          }
+      });
+  });
 });
 
 
+//decreses seat number
 
+
+document.addEventListener("DOMContentLoaded", function() {
+  const buttons = document.querySelectorAll(".seat-button");
+  const counterDisplay = document.getElementById("counterDisplay");
+
+  let count = 40;
+  let selectedSeats = 0;
+
+  const updateCounterButton = () => {
+    counterDisplay.textContent = ` ${count} seats left`;
+  };
+
+  const showCounterButton = () => {
+      if (count > 0) {
+        counterDisplay.classList.remove("hidden");
+      } else {
+        counterDisplay.classList.add("hidden");
+      }
+  };
+
+  buttons.forEach(button => {
+      button.addEventListener("click", function() {
+          if (selectedSeats < 4) {
+              count--;
+              selectedSeats++;
+              updateCounterButton();
+              showCounterButton();
+              if (selectedSeats === 4) {
+                  disableButtons();
+              }
+          }
+      });
+  });
+
+  counterDisplay.addEventListener("click", function() {
+      alert(`You clicked ${count} button(s).`);
+  });
+
+  /*const disableButtons = () => {
+      buttons.forEach(button => {
+          button.disabled = true;
+      });
+  };*/
+});
+
+//coupon
+
+document.getElementById('applyButton').addEventListener('click', function() {
+  var couponInput = document.getElementById('couponInput').value;
+  var total = 100; // Assuming the total price is $100
+  var discountAmount = 0;
+
+  if (couponInput === 'new15') {
+      discountAmount = total * 0.15;
+  } else if (couponInput === 'coupon20') {
+      discountAmount = total * 0.20;
+  }
+
+  var grandTotal = total - discountAmount;
+
+  document.getElementById('discount').textContent = 'Discount Applied: $' + discountAmount.toFixed(2);
+  document.getElementById('grandTotal').textContent = 'Grand Total: $' + grandTotal.toFixed(2);
+
+  document.getElementById('discount').classList.remove('hidden');
+  document.getElementById('grandTotal').classList.remove('hidden');
+
+  document.getElementById('couponInput').classList.add('hidden');
+  document.getElementById('applyButton').classList.add('hidden');
+});
   
+//apply button
+
+// Get references to the input field and the submit button
+const couponInput = document.getElementById('couponInput');
+const submitButton = document.getElementById('submitButton');
+
+// Add an event listener to the input field
+couponInput.addEventListener('input', function() {
+    // Get the value entered by the user and convert it to uppercase for case-insensitive matching
+    const couponCode = this.value.toUpperCase();
+
+    // Check if the entered coupon code is "NEW15" or "Coupon20"
+    if (couponCode === "NEW15" || couponCode === "COUPON20") {
+        // Enable the submit button if the coupon code is valid
+        submitButton.disabled = false;
+    } else {
+        // Otherwise, keep the submit button disabled
+        submitButton.disabled = true;
+    }
+});

@@ -145,7 +145,7 @@
           </div>
 
           <div>
-            <button id="leftoverButton" class="btn bg-green-200 text-green-700"><img src="images/seat-green-filled.png"> <span  class="font-bold">40 seat lefts</span> </button>
+            <button id="counterDisplay" class="btn bg-green-200 text-green-700"><img src="images/seat-green-filled.png"> <span  class="font-bold">40 seats left </span> </button>
           </div>
            </div>
              <div class="flex gap-80 mt-10 ">
@@ -342,7 +342,7 @@
                     <thead>
                       <tr>
                       
-                        <th>Seat <button id="seatButton" class="btn bg-lime-500 text-white"> <span  class="font-bold">0</span></button></th>
+                        <th>Seat <button id="counterButton" class="btn bg-lime-500 text-white"> <span  class="font-bold">0</span></button></th>
                         <th>Class</th>
                         <th>Price</th>
                       </tr>
@@ -364,10 +364,10 @@
             
             <label class="input input-bordered flex items-center mt-6 ">
               <input id="couponInput" type="text" class="grow" placeholder="Have any coupon" />
-              <button id="applyCouponButton" class=" btn bg-lime-500 text-white rounded-xl ">Apply</button>
+              <button id="submitButton"  class=" btn bg-lime-500 text-white rounded-xl ">Apply</button>
             </label>
             <div class="flex gap-96">
-              <p class="font-bold pt-8">Grand Total </p>
+              <p id="grandTotal"  class="font-bold pt-8">Grand Total </p>
               <p id="grandTotal" class=" pt-8">BDT 0</p>
              </div> 
              </div>
